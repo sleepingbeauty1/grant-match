@@ -19,29 +19,30 @@ const submissions = [];
  */
 app.post('/api/match-grants', (req, res) => {
   try {
-    const { sector, stage, state, email } = req.body;
+    const { name, gender, cofounders, sector, stage, state, email, needsHelp } = req.body;
     
     // Validate input
-    if (!sector || !stage || !state || !email) {
+    if (!email) {
       return res.status(400).json({
-        error: 'Missing required fields: sector, stage, state, email'
+        error: 'Missing email'
       });
     }
     
-    // Store submission
+    // Store submission with ALL fields
     const submission = {
       id: Date.now(),
-      email,
+      name,
+      gender,
+      cofounders,
       sector,
       stage,
       state,
+      email,
+      needsHelp,
       submitted_at: new Date().toISOString(),
       ip: req.ip
     };
     submissions.push(submission);
-    
-    // Get matching grants
-    const results = matchGrants({ sector, stage, state });
     
     // Save submission to file
     const submissionsFile = path.join(__dirname, 'submissions.jsonl');
@@ -49,8 +50,7 @@ app.post('/api/match-grants', (req, res) => {
     
     res.json({
       success: true,
-      message: 'Grants matched successfully',
-      data: results
+      message: 'Submission saved successfully'
     });
     
   } catch (error) {
