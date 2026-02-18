@@ -3,110 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grant Match - Find Government Grants in 5 Minutes</title>
+    <title>GrantMatch - Find Government Grants for Your Startup</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
             line-height: 1.6;
-            color: #333;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        /* Navigation */
+        nav {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             padding: 80px 20px;
             text-align: center;
         }
-        
-        header h1 {
+
+        .hero h1 {
             font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
+            margin-bottom: 16px;
+            font-weight: 800;
         }
-        
-        header p {
+
+        .hero p {
             font-size: 20px;
+            margin-bottom: 32px;
             opacity: 0.95;
             max-width: 600px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
-        .hero-section {
-            padding: 60px 20px;
-            text-align: center;
-        }
-        
-        .problem {
-            font-size: 24px;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-        
-        .form-section {
-            max-width: 500px;
-            margin: 60px auto;
-            background: #f8f9ff;
-            padding: 40px;
+
+        /* Form Section */
+        .form-wrapper {
+            max-width: 600px;
+            margin: -40px auto 60px;
+            background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            position: relative;
+            z-index: 10;
         }
-        
-        .form-section h2 {
+
+        .form-wrapper h2 {
             font-size: 24px;
-            margin-bottom: 10px;
-            color: #333;
+            margin-bottom: 8px;
+            color: #1f2937;
         }
-        
-        .form-section p {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
+
+        .form-wrapper > p {
+            color: #6b7280;
+            margin-bottom: 28px;
+            font-size: 14px;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
-            text-align: left;
         }
-        
+
         label {
             display: block;
             font-weight: 600;
             margin-bottom: 8px;
-            color: #333;
+            color: #374151;
+            font-size: 14px;
         }
-        
+
         select, input[type="email"] {
             width: 100%;
             padding: 12px;
-            border: 2px solid #ddd;
+            border: 1px solid #d1d5db;
             border-radius: 8px;
             font-size: 16px;
             font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
-        
+
         select:focus, input[type="email"]:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
-        
-        button {
+
+        .submit-btn {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 12px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -115,200 +133,397 @@
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        
-        button:hover {
+
+        .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
         }
-        
-        button:active {
+
+        .submit-btn:active {
             transform: translateY(0);
         }
-        
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 80px 0;
+
+        /* Results Section */
+        .results-wrapper {
+            display: none;
+            max-width: 900px;
+            margin: 60px auto;
         }
-        
-        .benefit-card {
-            padding: 30px;
-            border: 1px solid #eee;
+
+        .results-wrapper.show {
+            display: block;
+        }
+
+        .saved-message {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
             border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 32px;
             text-align: center;
         }
-        
-        .benefit-card h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 20px;
+
+        .saved-message h3 {
+            color: #065f46;
+            margin-bottom: 8px;
+            font-size: 18px;
         }
-        
-        .benefit-card p {
-            color: #666;
+
+        .saved-message p {
+            color: #047857;
+            font-size: 14px;
+        }
+
+        .results-header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .results-header h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+
+        .results-header p {
+            color: #6b7280;
             font-size: 16px;
         }
-        
-        .icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-        
-        .cta-buttons {
+
+        .grants-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
         }
-        
-        .cta-buttons button {
-            padding: 12px;
-            font-size: 14px;
-        }
-        
-        .cta-secondary {
+
+        .grant-card {
             background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+            cursor: pointer;
         }
-        
-        .cta-secondary:hover {
-            background: #f8f9ff;
+
+        .grant-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15);
+            transform: translateY(-4px);
         }
-        
-        .trust-text {
-            color: #999;
+
+        .grant-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+
+        .grant-card p {
+            color: #6b7280;
             font-size: 14px;
-            margin-top: 20px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .grant-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge.deadline {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 10px;
+            background: #f3f4f6;
+            color: #2563eb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .apply-btn:hover {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            padding: 20px;
+            background: #f3f4f6;
+            border-radius: 12px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 40px 20px;
+            margin-top: 80px;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #2563eb;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Get Matched with Government Grants</h1>
-        <p>Save 20+ hours of hunting. See which government grants you actually qualify for in just 5 minutes.</p>
-    </header>
-    
-    <div class="container">
-        <div class="hero-section">
-            <div class="problem">
-                ⏰ Indian founders waste 20+ hours searching fragmented government grant programs
-            </div>
-            
-            <div class="form-section">
-                <h2>Find Your Grants</h2>
-                <p>Quick 5-minute questionnaire. We'll show you the grants you're eligible for.</p>
-                
-                <form id="grantForm">
-                    <div class="form-group">
-                        <label for="sector">What's your startup sector?</label>
-                        <select id="sector" name="sector" required>
-                            <option value="">Select sector...</option>
-                            <option value="fintech">Fintech</option>
-                            <option value="deeptech">Deep Tech</option>
-                            <option value="biotech">Biotech</option>
-                            <option value="agritech">Agritech</option>
-                            <option value="edtech">EdTech</option>
-                            <option value="healthtech">HealthTech</option>
-                            <option value="saas">SaaS</option>
-                            <option value="ecommerce">E-commerce</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="stage">What stage are you at?</label>
-                        <select id="stage" name="stage" required>
-                            <option value="">Select stage...</option>
-                            <option value="idea">Idea Stage</option>
-                            <option value="preseed">Pre-Seed</option>
-                            <option value="seed">Seed</option>
-                            <option value="seriesA">Series A</option>
-                            <option value="seriesB">Series B+</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="state">Which state are you based in?</label>
-                        <select id="state" name="state" required>
-                            <option value="">Select state...</option>
-                            <option value="maharashtra">Maharashtra</option>
-                            <option value="karnataka">Karnataka</option>
-                            <option value="delhi">Delhi</option>
-                            <option value="tamil-nadu">Tamil Nadu</option>
-                            <option value="telangana">Telangana</option>
-                            <option value="uttar-pradesh">Uttar Pradesh</option>
-                            <option value="punjab">Punjab</option>
-                            <option value="rajasthan">Rajasthan</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Your email</label>
-                        <input type="email" id="email" name="email" placeholder="you@startup.com" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="needsHelp">Do you need help with the application process?</label>
-                        <select id="needsHelp" name="needsHelp">
-                            <option value="not-sure">Not sure yet</option>
-                            <option value="yes">Yes, I need help</option>
-                            <option value="no">No, I can handle it</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit">Show Me My Grants →</button>
-                    
-                    <p class="trust-text">✓ No spam. No BS. Just grants you can actually apply for.</p>
-                </form>
-            </div>
-            
-            <div class="benefits">
-                <div class="benefit-card">
-                    <div class="icon">⚡</div>
-                    <h3>200+ Programs</h3>
-                    <p>All central and state government grants in one place</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">🎯</div>
-                    <h3>Personalized Matching</h3>
-                    <p>See only the grants you're actually eligible for</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">📋</div>
-                    <h3>Application Help</h3>
-                    <p>Get guided through each application step by step</p>
-                </div>
-            </div>
+    <nav>
+        <div class="container">
+            <div class="logo">GrantMatch</div>
+            <div style="font-size: 14px; color: #6b7280;">Find government grants in 5 minutes</div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Stop Wasting Time Hunting for Grants</h1>
+            <p>We found all 200+ government grants. Answer 5 quick questions and see which ones you actually qualify for.</p>
         </div>
     </div>
-    
+
+    <div class="container">
+        <!-- Form Section -->
+        <div id="formSection" class="form-wrapper">
+            <h2>Find Your Grants</h2>
+            <p>Takes less than 5 minutes</p>
+            
+            <form id="grantForm">
+                <div class="form-group">
+                    <label for="sector">What's your startup sector?</label>
+                    <select id="sector" name="sector" required>
+                        <option value="">Select sector...</option>
+                        <option value="fintech">Fintech</option>
+                        <option value="deeptech">Deep Tech</option>
+                        <option value="biotech">Biotech</option>
+                        <option value="agritech">Agritech</option>
+                        <option value="edtech">EdTech</option>
+                        <option value="healthtech">HealthTech</option>
+                        <option value="saas">SaaS</option>
+                        <option value="ecommerce">E-commerce</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="stage">What stage are you at?</label>
+                    <select id="stage" name="stage" required>
+                        <option value="">Select stage...</option>
+                        <option value="idea">Idea Stage</option>
+                        <option value="preseed">Pre-Seed</option>
+                        <option value="seed">Seed</option>
+                        <option value="seriesA">Series A</option>
+                        <option value="seriesB">Series B+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">Which state are you based in?</label>
+                    <select id="state" name="state" required>
+                        <option value="">Select state...</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="tamil-nadu">Tamil Nadu</option>
+                        <option value="telangana">Telangana</option>
+                        <option value="uttar-pradesh">Uttar Pradesh</option>
+                        <option value="punjab">Punjab</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your email</label>
+                    <input type="email" id="email" name="email" placeholder="you@startup.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="needsHelp">Do you need help with the application process?</label>
+                    <select id="needsHelp" name="needsHelp">
+                        <option value="not-sure">Not sure yet</option>
+                        <option value="yes">Yes, I need help</option>
+                        <option value="no">No, I can handle it</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Find My Grants →</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-wrapper">
+            <div class="saved-message">
+                <h3>✓ Your profile has been saved</h3>
+                <p>We've matched you with grants based on your startup profile</p>
+            </div>
+
+            <div class="results-header">
+                <h2>Explore Grants in Your Area</h2>
+                <p id="resultsSubtitle">Top grants for your startup</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalMatches">0</div>
+                    <div class="stat-label">Matching Grants</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalFunding">₹0L+</div>
+                    <div class="stat-label">Total Potential Funding</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="avgTicket">₹0L</div>
+                    <div class="stat-label">Average Ticket Size</div>
+                </div>
+            </div>
+
+            <div class="grants-grid" id="grantsGrid"></div>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Grant Match. Finding funding for India's startups.</p>
+        <p>&copy; 2026 GrantMatch. Helping Indian startups access government grants.</p>
     </footer>
-    
+
     <script>
+        // Grant database (from matching-engine.js)
+        const grantsData = [
+            {id: 1, name: "Startup India Seed Fund", sector: "All", stage: "Pre-Seed", min_ticket: 5000, max_ticket: 500000, state: "All", deadline: "Ongoing"},
+            {id: 2, name: "DSIR Early Stage Innovation Fund", sector: "Deep Tech", stage: "Idea", min_ticket: 200000, max_ticket: 5000000, state: "All", deadline: "Ongoing"},
+            {id: 3, name: "DPIIT Technology Fund", sector: "All", stage: "Pre-Seed", min_ticket: 1000000, max_ticket: 5000000, state: "All", deadline: "Quarterly"},
+            {id: 4, name: "NASSCOM 10000 Startups", sector: "All", stage: "Seed", min_ticket: 500000, max_ticket: 2000000, state: "All", deadline: "Rolling"},
+            {id: 5, name: "SIDBI Stand Up India Loan Scheme", sector: "All", stage: "Pre-Seed", min_ticket: 1000000, max_ticket: 1000000, state: "All", deadline: "Ongoing"},
+            {id: 6, name: "Pradhan Mantri MUDRA Yojana", sector: "All", stage: "Idea", min_ticket: 50000, max_ticket: 1000000, state: "All", deadline: "Ongoing"},
+            {id: 7, name: "Maharashtra Innovation Scheme", sector: "All", stage: "All", min_ticket: 1000000, max_ticket: 5000000, state: "maharashtra", deadline: "Rolling"},
+            {id: 8, name: "Karnataka Startup Policy Grant", sector: "All", stage: "Pre-Seed", min_ticket: 500000, max_ticket: 2000000, state: "karnataka", deadline: "Rolling"},
+            {id: 9, name: "Fintech Regulatory Sandbox", sector: "fintech", stage: "Seed", min_ticket: 2000000, max_ticket: 10000000, state: "All", deadline: "Rolling"},
+            {id: 10, name: "Biotechnology Ignition Grant", sector: "biotech", stage: "Pre-Seed", min_ticket: 500000, max_ticket: 2000000, state: "All", deadline: "Ongoing"},
+            {id: 11, name: "AI and ML Innovation Fund", sector: "deeptech", stage: "Seed", min_ticket: 1000000, max_ticket: 5000000, state: "All", deadline: "Rolling"},
+            {id: 12, name: "Women Entrepreneurs Advancement Program", sector: "All", stage: "Pre-Seed", min_ticket: 500000, max_ticket: 2000000, state: "All", deadline: "Ongoing"},
+        ];
+
+        function scoreGrant(grant, sector, stage, state) {
+            let score = 0;
+            if (grant.sector === 'All' || grant.sector === sector) score += 100;
+            if (grant.stage === 'All' || grant.stage === stage) score += 80;
+            if (grant.state === 'All' || grant.state === state) score += 60;
+            return score;
+        }
+
+        function findMatchingGrants(sector, stage, state, topN = 10) {
+            const scored = grantsData.map(grant => ({
+                ...grant,
+                score: scoreGrant(grant, sector, stage, state)
+            }));
+            scored.sort((a, b) => b.score - a.score);
+            return scored.slice(0, topN);
+        }
+
         document.getElementById('grantForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            const formData = {
-                sector: document.getElementById('sector').value,
-                stage: document.getElementById('stage').value,
-                state: document.getElementById('state').value,
-                email: document.getElementById('email').value,
-                needsHelp: document.getElementById('needsHelp').value,
-                timestamp: new Date().toISOString(),
-                source: 'landing-page'
-            };
-            
-            // Log to console for now (will connect to backend)
-            console.log('Form submitted:', formData);
-            
-            // Show success message
-            alert('Thanks! Check your email for your personalized grants list.');
-            document.getElementById('grantForm').reset();
+
+            const sector = document.getElementById('sector').value;
+            const stage = document.getElementById('stage').value;
+            const state = document.getElementById('state').value;
+            const email = document.getElementById('email').value;
+            const needsHelp = document.getElementById('needsHelp').value;
+
+            // Find matching grants
+            const matches = findMatchingGrants(sector, stage, state, 12);
+
+            // Calculate stats
+            const totalFunding = matches.reduce((sum, g) => sum + g.max_ticket, 0);
+            const avgTicket = Math.round(matches.reduce((sum, g) => sum + g.max_ticket, 0) / matches.length / 100000);
+
+            // Update UI
+            document.getElementById('totalMatches').textContent = matches.length;
+            document.getElementById('totalFunding').textContent = Math.round(totalFunding / 10000000) + 'L+';
+            document.getElementById('avgTicket').textContent = '₹' + avgTicket + 'L';
+            document.getElementById('resultsSubtitle').textContent = `Based on ${sector} startups at ${stage} stage in ${state}`;
+
+            // Render grant cards
+            const grid = document.getElementById('grantsGrid');
+            grid.innerHTML = matches.map(grant => `
+                <div class="grant-card">
+                    <h3>${grant.name}</h3>
+                    <p>${grant.id <= 12 ? 'Government supported grants program' : 'Public funding opportunity'}</p>
+                    <div class="grant-meta">
+                        <span class="badge">₹${Math.round(grant.max_ticket / 100000)}L max</span>
+                        <span class="badge deadline">${grant.deadline}</span>
+                    </div>
+                    <button class="apply-btn" onclick="alert('Redirecting to application...')">Learn More →</button>
+                </div>
+            `).join('');
+
+            // Show results, hide form
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('show');
+
+            // Log submission
+            console.log({sector, stage, state, email, needsHelp, matchCount: matches.length});
         });
     </script>
 </body>
