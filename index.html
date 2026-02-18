@@ -21,7 +21,7 @@
         .cta-btn { display: inline-block; background: #03AC13; color: white; padding: 14px 32px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; font-size: 16px; }
         .cta-btn:hover { background: #029410; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(3, 172, 19, 0.2); }
 
-        /* Problem Section */
+        /* Problems */
         .problems { padding: 80px 20px; background: white; }
         .section-title { font-size: 40px; text-align: center; margin-bottom: 60px; color: #1f2937; }
         .problems-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
@@ -33,13 +33,13 @@
         .how-it-works { padding: 80px 20px; background: #f9fafb; }
         .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 60px; }
         .step { text-align: center; }
-        .step-number { display: inline-block; width: 60px; height: 60px; background: #03AC13; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; margin-bottom: 20px; }
+        .step-number { display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #03AC13; color: white; border-radius: 50%; font-size: 28px; font-weight: 700; margin-bottom: 20px; }
         .step h3 { font-size: 20px; margin-bottom: 10px; color: #1f2937; }
         .step p { color: #6b7280; }
 
-        /* Form Section */
+        /* Form */
         .form-section { padding: 80px 20px; background: white; }
-        .form-wrapper { max-width: 600px; margin: 0 auto; background: #f9fafb; padding: 40px; border-radius: 12px; border: 2px solid #e5e7eb; }
+        .form-wrapper { max-width: 700px; margin: 0 auto; background: #f9fafb; padding: 40px; border-radius: 12px; border: 2px solid #e5e7eb; }
         .form-wrapper h2 { font-size: 28px; margin-bottom: 10px; color: #1f2937; }
         .form-wrapper > p { color: #6b7280; margin-bottom: 30px; font-size: 15px; }
         .form-group { margin-bottom: 20px; }
@@ -47,7 +47,7 @@
         select, input { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; font-family: inherit; }
         select:focus, input:focus { outline: none; border-color: #03AC13; box-shadow: 0 0 0 3px rgba(3, 172, 19, 0.1); }
 
-        /* Results Section */
+        /* Results */
         .results-section { display: none; padding: 60px 20px; background: white; }
         .results-section.show { display: block; }
         .success-message { background: #ecfdf5; border-left: 4px solid #03AC13; padding: 20px; border-radius: 8px; margin-bottom: 40px; text-align: center; }
@@ -55,7 +55,7 @@
         .success-message p { color: #047857; font-size: 15px; }
 
         /* Grants Grid */
-        .grants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 40px 0; }
+        .grants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin: 40px 0; }
         .grant-card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; transition: all 0.3s; cursor: pointer; }
         .grant-card:hover { border-color: #03AC13; box-shadow: 0 12px 24px rgba(3, 172, 19, 0.1); transform: translateY(-4px); }
         .grant-card h3 { font-size: 18px; margin-bottom: 12px; color: #1f2937; }
@@ -63,19 +63,20 @@
         .grant-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
         .badge { background: #dbeafe; color: #1e40af; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
         .badge.green { background: #dcfce7; color: #15803d; }
-        .learn-more-btn { width: 100%; padding: 10px; background: #f3f4f6; color: #03AC13; border: 1px solid #e5e7eb; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-        .learn-more-btn:hover { background: #03AC13; color: white; border-color: #03AC13; }
 
         /* Modal */
         .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
         .modal.show { display: flex; }
-        .modal-content { background: white; border-radius: 12px; padding: 40px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; }
-        .modal-close { float: right; font-size: 28px; color: #6b7280; cursor: pointer; margin-bottom: 20px; }
+        .modal-content { background: white; border-radius: 12px; padding: 40px; max-width: 700px; width: 90%; max-height: 90vh; overflow-y: auto; }
+        .modal-close { float: right; font-size: 28px; color: #6b7280; cursor: pointer; margin-bottom: 20px; background: none; border: none; }
         .modal-close:hover { color: #1f2937; }
-        .modal h2 { font-size: 28px; margin-bottom: 20px; color: #1f2937; }
-        .modal-info { margin-bottom: 20px; }
-        .modal-info strong { color: #1f2937; }
-        .modal-info p { color: #6b7280; font-size: 15px; margin-bottom: 12px; }
+        .modal h2 { font-size: 28px; margin-bottom: 8px; color: #1f2937; }
+        .modal-ministry { color: #6b7280; font-size: 14px; margin-bottom: 24px; }
+        .modal-section { margin-bottom: 24px; }
+        .modal-section strong { color: #1f2937; display: block; margin-bottom: 8px; }
+        .modal-section p { color: #6b7280; font-size: 15px; line-height: 1.6; }
+        .modal-link { display: inline-block; margin-top: 16px; padding: 12px 24px; background: #03AC13; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; }
+        .modal-link:hover { background: #029410; }
 
         /* Stats */
         .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 40px 0; background: #f9fafb; border-radius: 12px; margin: 40px 0; }
@@ -169,6 +170,32 @@
                 
                 <form id="grantForm">
                     <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select...</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cofounders">Number of Co-Founders (including yourself)</label>
+                        <select id="cofounders" name="cofounders" required>
+                            <option value="">Select...</option>
+                            <option value="1">1 (Solo)</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="sector">What's your startup sector?</label>
                         <select id="sector" name="sector" required>
                             <option value="">Select...</option>
@@ -221,7 +248,7 @@
             <div class="results-section" id="resultsSection">
                 <div class="success-message">
                     <h3>✓ Profile Saved Successfully</h3>
-                    <p>You'll receive a personalized call to discuss your grant options and help you apply.</p>
+                    <p>You'll receive a personalized call from our team to discuss your grant options and help you apply.</p>
                 </div>
 
                 <div class="stats">
@@ -281,62 +308,69 @@
     <!-- Modal for Grant Details -->
     <div class="modal" id="grantModal">
         <div class="modal-content">
-            <span class="modal-close" onclick="document.getElementById('grantModal').classList.remove('show')">&times;</span>
+            <button class="modal-close" onclick="document.getElementById('grantModal').classList.remove('show')">&times;</button>
             <div id="modalBody"></div>
         </div>
     </div>
 
     <script>
         const grantsData = [
-            {id: 1, name: "Startup India Seed Fund", sector: "All", stage: "Pre-Seed", min: 5000, max: 500000, state: "All", deadline: "Ongoing", eligibility: "Must be incorporated as a private limited company; registered as a startup; less than 5 years old"},
-            {id: 2, name: "DSIR Early Stage Innovation Fund", sector: "Deep Tech", stage: "Idea", min: 200000, max: 5000000, state: "All", deadline: "Ongoing", eligibility: "Individual researchers or teams; working on scientific/industrial research"},
-            {id: 3, name: "DPIIT Technology Fund", sector: "All", stage: "Pre-Seed", min: 1000000, max: 5000000, state: "All", deadline: "Quarterly", eligibility: "Innovative technology startups; less than 7 years old"},
-            {id: 4, name: "NASSCOM 10000 Startups", sector: "All", stage: "Seed", min: 500000, max: 2000000, state: "All", deadline: "Rolling", eligibility: "Registered startup; innovative business model; based in India"},
-            {id: 5, name: "Maharashtra Innovation Scheme", sector: "All", stage: "All", min: 1000000, max: 5000000, state: "maharashtra", deadline: "Rolling", eligibility: "Registered in Maharashtra; innovative business model"},
-            {id: 6, name: "Karnataka Startup Policy", sector: "All", stage: "Pre-Seed", min: 500000, max: 2000000, state: "karnataka", deadline: "Rolling", eligibility: "Registered in Karnataka; less than 5 years old"},
-            {id: 7, name: "Fintech Regulatory Sandbox", sector: "fintech", stage: "Seed", min: 2000000, max: 10000000, state: "All", deadline: "Rolling", eligibility: "Fintech business model; regulatory compliant"},
-            {id: 8, name: "Biotechnology Ignition Grant", sector: "biotech", stage: "Pre-Seed", min: 500000, max: 2000000, state: "All", deadline: "Ongoing", eligibility: "Biotech/life sciences; registered company"},
-            {id: 9, name: "AI and ML Innovation Fund", sector: "deeptech", stage: "Seed", min: 1000000, max: 5000000, state: "All", deadline: "Rolling", eligibility: "AI/ML technology core; problem-solution fit"},
-            {id: 10, name: "Women Entrepreneurs Program", sector: "All", stage: "Pre-Seed", min: 500000, max: 2000000, state: "All", deadline: "Ongoing", eligibility: "Woman founder/co-founder; registered company"},
-            {id: 11, name: "EdTech Innovation Fund", sector: "edtech", stage: "Seed", min: 500000, max: 3000000, state: "All", deadline: "Rolling", eligibility: "EdTech business model; proven user engagement"},
-            {id: 12, name: "AgriTech Accelerator", sector: "agritech", stage: "All", min: 500000, max: 2000000, state: "All", deadline: "Rolling", eligibility: "Agricultural technology; solving farmer problems"},
+            {id: 1, name: "Startup India Seed Fund", ministry: "Ministry of Commerce & Industry", sector: "All", stage: "Pre-Seed", min: 5000, max: 500000, state: "All", description: "Government of India fund to support innovative startups in the country", eligibility: "Must be incorporated as a private limited company; registered as a startup; less than 5 years old; not funded more than ₹10 lakh in any previous scheme", deadline: "Ongoing", link: "https://www.startupindia.gov.in/sif", womenOnly: false},
+            {id: 2, name: "DSIR Early Stage Innovation Fund", ministry: "Ministry of Science & Technology", sector: "Deep Tech", stage: "Idea", min: 200000, max: 5000000, state: "All", description: "Department of Scientific and Industrial Research fund for early stage deep tech innovation", eligibility: "Can be individual researchers or teams; working on scientific/industrial research; not yet commercialized", deadline: "Ongoing", link: "https://www.dsir.gov.in", womenOnly: false},
+            {id: 3, name: "DPIIT Technology Fund", ministry: "Ministry of Commerce & Industry", sector: "All", stage: "Pre-Seed", min: 1000000, max: 5000000, state: "All", description: "Department for Promotion of Industry and Internal Trade fund for technology-driven startups", eligibility: "Innovative technology startups; less than 7 years old; tech-focused business model", deadline: "Quarterly", link: "https://www.dpiit.gov.in", womenOnly: false},
+            {id: 4, name: "NASSCOM 10000 Startups", ministry: "NASSCOM", sector: "All", stage: "Seed", min: 500000, max: 2000000, state: "All", description: "Program to accelerate 10000 startups across India", eligibility: "Registered startup; working on innovative business model; based in India", deadline: "Rolling", link: "https://10000startups.nasscom.in", womenOnly: false},
+            {id: 5, name: "SIDBI Stand Up India Loan Scheme", ministry: "Ministry of Micro Small Medium Enterprises", sector: "All", stage: "Pre-Seed", min: 1000000, max: 1000000, state: "All", description: "Low-interest loans from Small Industries Development Bank for startups", eligibility: "First generation entrepreneur; SC/ST category; woman entrepreneur; business plan ready", deadline: "Ongoing", link: "https://www.sidbi.in", womenOnly: true},
+            {id: 6, name: "Pradhan Mantri MUDRA Yojana", ministry: "Ministry of Finance", sector: "All", stage: "Idea", min: 50000, max: 1000000, state: "All", description: "Collateral-free loans for small businesses and startups", eligibility: "Business plan ready; no existing loan; genuine business case", deadline: "Ongoing", link: "https://www.mudra.org.in", womenOnly: false},
+            {id: 7, name: "Maharashtra Innovation Scheme", ministry: "Government of Maharashtra", sector: "All", stage: "All", min: 1000000, max: 5000000, state: "maharashtra", description: "Support for innovative startups in Maharashtra", eligibility: "Registered in Maharashtra; innovative business model; job creation potential", deadline: "Rolling", link: "https://www.mahainnovation.gov.in", womenOnly: false},
+            {id: 8, name: "Karnataka Startup Policy Grant", ministry: "Government of Karnataka", sector: "All", stage: "Pre-Seed", min: 500000, max: 2000000, state: "karnataka", description: "Karnataka government grant for startups registered in the state", eligibility: "Registered in Karnataka; less than 5 years old; tech/innovation focused", deadline: "Rolling", link: "https://www.startupkarnataka.in", womenOnly: false},
+            {id: 9, name: "Fintech Regulatory Sandbox", ministry: "Reserve Bank of India", sector: "fintech", stage: "Seed", min: 2000000, max: 10000000, state: "All", description: "RBI sandbox for fintech innovation and testing", eligibility: "Fintech business model; regulatory compliant; innovative solution", deadline: "Rolling", link: "https://www.rbi.org.in", womenOnly: false},
+            {id: 10, name: "Biotechnology Ignition Grant", ministry: "Ministry of Science & Technology", sector: "biotech", stage: "Pre-Seed", min: 500000, max: 2000000, state: "All", description: "Support for biotech startups from Department of Biotechnology", eligibility: "Working on biotech/life sciences; registered company; research-backed", deadline: "Ongoing", link: "https://dbtindia.gov.in", womenOnly: false},
+            {id: 11, name: "AI and ML Innovation Fund", ministry: "Ministry of Electronics & IT", sector: "deeptech", stage: "Seed", min: 1000000, max: 5000000, state: "All", description: "Support for AI/ML startups solving real problems", eligibility: "AI/ML technology core; problem-solution fit; market validation", deadline: "Rolling", link: "https://www.aimlstartupofindia.in", womenOnly: false},
+            {id: 12, name: "Women Entrepreneurs Advancement Program", ministry: "Ministry of Women & Child Development", sector: "All", stage: "Pre-Seed", min: 500000, max: 2000000, state: "All", description: "Special grants and support for women-led startups", eligibility: "Woman founder/co-founder; innovative business model; registered company", deadline: "Ongoing", link: "https://www.womenentrepreneurs.gov.in", womenOnly: true},
         ];
 
-        function scoreGrant(grant, sector, stage, state) {
+        function scoreGrant(grant, sector, stage, state, gender) {
             let score = 0;
             if (grant.sector === 'All' || grant.sector === sector) score += 100;
             if (grant.stage === 'All' || grant.stage === stage) score += 80;
             if (grant.state === 'All' || grant.state === state) score += 60;
+            // Filter women-only grants
+            if (grant.womenOnly && gender !== 'female') return -1;
             return score;
         }
 
-        function findMatches(sector, stage, state) {
+        function findMatches(sector, stage, state, gender) {
             return grantsData
-                .map(g => ({...g, score: scoreGrant(g, sector, stage, state)}))
+                .map(g => ({...g, score: scoreGrant(g, sector, stage, state, gender)}))
+                .filter(g => g.score > 0)
                 .sort((a, b) => b.score - a.score)
                 .slice(0, 12);
         }
 
         document.getElementById('grantForm').addEventListener('submit', (e) => {
             e.preventDefault();
+            const name = document.getElementById('name').value;
+            const gender = document.getElementById('gender').value;
+            const cofounders = document.getElementById('cofounders').value;
             const sector = document.getElementById('sector').value;
             const stage = document.getElementById('stage').value;
             const state = document.getElementById('state').value;
-            const matches = findMatches(sector, stage, state);
+            const email = document.getElementById('email').value;
+
+            const matches = findMatches(sector, stage, state, gender);
 
             document.getElementById('matchCount').textContent = matches.length;
             const funding = matches.reduce((sum, g) => sum + g.max, 0);
             document.getElementById('totalFunding').textContent = Math.round(funding / 10000000) + 'L+';
 
             document.getElementById('grantsGrid').innerHTML = matches.map(g => `
-                <div class="grant-card">
+                <div class="grant-card" onclick="showGrantDetails(${g.id})">
                     <h3>${g.name}</h3>
-                    <p>Government supported grant program</p>
+                    <p>${g.description}</p>
                     <div class="grant-meta">
-                        <span class="badge">₹${Math.round(g.max / 100000)}L max</span>
+                        <span class="badge">₹${Math.round(g.min / 100000)}L - ₹${Math.round(g.max / 100000)}L</span>
                         <span class="badge green">${g.deadline}</span>
                     </div>
-                    <button class="learn-more-btn" onclick="showGrantDetails(${g.id})">Learn More →</button>
                 </div>
             `).join('');
 
@@ -348,15 +382,34 @@
             const grant = grantsData.find(g => g.id === grantId);
             document.getElementById('modalBody').innerHTML = `
                 <h2>${grant.name}</h2>
-                <div class="modal-info">
-                    <p><strong>Ticket Size:</strong> ₹${Math.round(grant.min / 100000)}L - ₹${Math.round(grant.max / 100000)}L</p>
-                    <p><strong>Applicable Sectors:</strong> ${grant.sector}</p>
-                    <p><strong>Applicable Stages:</strong> ${grant.stage}</p>
-                    <p><strong>Geographic Scope:</strong> ${grant.state === 'All' ? 'All India' : grant.state.toUpperCase()}</p>
-                    <p><strong>Application Deadline:</strong> ${grant.deadline}</p>
-                    <p><strong>Eligibility:</strong> ${grant.eligibility}</p>
+                <p class="modal-ministry">${grant.ministry}</p>
+                
+                <div class="modal-section">
+                    <strong>About This Grant</strong>
+                    <p>${grant.description}</p>
                 </div>
-                <button class="cta-btn" style="width: 100%;">Apply Now →</button>
+
+                <div class="modal-section">
+                    <strong>Funding Details</strong>
+                    <p>Minimum: ₹${Math.round(grant.min / 100000)}L | Maximum: ₹${Math.round(grant.max / 100000)}L</p>
+                </div>
+
+                <div class="modal-section">
+                    <strong>Applicable To</strong>
+                    <p>Sectors: ${grant.sector} | Stages: ${grant.stage} | States: ${grant.state === 'All' ? 'All India' : grant.state.toUpperCase()}</p>
+                </div>
+
+                <div class="modal-section">
+                    <strong>Eligibility Criteria</strong>
+                    <p>${grant.eligibility}</p>
+                </div>
+
+                <div class="modal-section">
+                    <strong>Application Deadline</strong>
+                    <p>${grant.deadline}</p>
+                </div>
+
+                <a href="${grant.link}" target="_blank" class="modal-link">View Official Website →</a>
             `;
             document.getElementById('grantModal').classList.add('show');
         }
