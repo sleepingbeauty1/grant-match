@@ -360,8 +360,8 @@
             const matches = findMatches(sector, stage, state, gender);
 
             document.getElementById('matchCount').textContent = matches.length;
-            const funding = matches.reduce((sum, g) => sum + g.max, 0);
-            document.getElementById('totalFunding').textContent = Math.round(funding / 10000000) + 'L+';
+            const maxFunding = matches.length > 0 ? Math.max(...matches.map(g => g.max)) : 0;
+            document.getElementById('totalFunding').textContent = '₹' + Math.round(maxFunding / 100000) + 'L';
 
             document.getElementById('grantsGrid').innerHTML = matches.map(g => `
                 <div class="grant-card" onclick="showGrantDetails(${g.id})">
