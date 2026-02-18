@@ -78,7 +78,7 @@ app.get('/api/submissions', (req, res) => {
  * Serve landing page
  */
 app.get('/', (req, res) => {
-  const landingPage = fs.readFileSync(path.join(__dirname, 'landing-page.html'), 'utf8');
+  const landingPage = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
   res.send(landingPage);
 });
 

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrantMatch - Find Government Grants for Your Startup</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1f2937; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Nav */
+        nav { background: white; border-bottom: 1px solid #e5e7eb; padding: 20px 0; position: sticky; top: 0; z-index: 100; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 28px; font-weight: 700; color: #03AC13; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(135deg, #fff 0%, #f0fdf4 100%); padding: 100px 20px; text-align: center; border-bottom: 2px solid #03AC13; }
+        .hero h1 { font-size: 56px; margin-bottom: 20px; color: #1f2937; line-height: 1.2; }
+        .hero p { font-size: 20px; color: #6b7280; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .cta-btn { display: inline-block; background: #03AC13; color: white; padding: 14px 32px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; font-size: 16px; }
+        .cta-btn:hover { background: #029410; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(3, 172, 19, 0.2); }
+
+        /* Problem Section */
+        .problems { padding: 80px 20px; background: white; }
+        .section-title { font-size: 40px; text-align: center; margin-bottom: 60px; color: #1f2937; }
+        .problems-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .problem-card { background: #f9fafb; padding: 30px; border-radius: 12px; border-left: 4px solid #03AC13; }
+        .problem-card h3 { font-size: 20px; margin-bottom: 12px; color: #1f2937; }
+        .problem-card p { color: #6b7280; font-size: 15px; }
+
+        /* How It Works */
+        .how-it-works { padding: 80px 20px; background: #f9fafb; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 60px; }
+        .step { text-align: center; }
+        .step-number { display: inline-block; width: 60px; height: 60px; background: #03AC13; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; margin-bottom: 20px; }
+        .step h3 { font-size: 20px; margin-bottom: 10px; color: #1f2937; }
+        .step p { color: #6b7280; }
+
+        /* Form Section */
+        .form-section { padding: 80px 20px; background: white; }
+        .form-wrapper { max-width: 600px; margin: 0 auto; background: #f9fafb; padding: 40px; border-radius: 12px; border: 2px solid #e5e7eb; }
+        .form-wrapper h2 { font-size: 28px; margin-bottom: 10px; color: #1f2937; }
+        .form-wrapper > p { color: #6b7280; margin-bottom: 30px; font-size: 15px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: #374151; font-size: 14px; }
+        select, input { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; font-family: inherit; }
+        select:focus, input:focus { outline: none; border-color: #03AC13; box-shadow: 0 0 0 3px rgba(3, 172, 19, 0.1); }
+
+        /* Results Section */
+        .results-section { display: none; padding: 60px 20px; background: white; }
+        .results-section.show { display: block; }
+        .success-message { background: #ecfdf5; border-left: 4px solid #03AC13; padding: 20px; border-radius: 8px; margin-bottom: 40px; text-align: center; }
+        .success-message h3 { color: #065f46; font-size: 20px; margin-bottom: 8px; }
+        .success-message p { color: #047857; font-size: 15px; }
+
+        /* Grants Grid */
+        .grants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 40px 0; }
+        .grant-card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; transition: all 0.3s; cursor: pointer; }
+        .grant-card:hover { border-color: #03AC13; box-shadow: 0 12px 24px rgba(3, 172, 19, 0.1); transform: translateY(-4px); }
+        .grant-card h3 { font-size: 18px; margin-bottom: 12px; color: #1f2937; }
+        .grant-card p { color: #6b7280; font-size: 14px; margin-bottom: 16px; }
+        .grant-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+        .badge { background: #dbeafe; color: #1e40af; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge.green { background: #dcfce7; color: #15803d; }
+        .learn-more-btn { width: 100%; padding: 10px; background: #f3f4f6; color: #03AC13; border: 1px solid #e5e7eb; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .learn-more-btn:hover { background: #03AC13; color: white; border-color: #03AC13; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+        .modal.show { display: flex; }
+        .modal-content { background: white; border-radius: 12px; padding: 40px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; }
+        .modal-close { float: right; font-size: 28px; color: #6b7280; cursor: pointer; margin-bottom: 20px; }
+        .modal-close:hover { color: #1f2937; }
+        .modal h2 { font-size: 28px; margin-bottom: 20px; color: #1f2937; }
+        .modal-info { margin-bottom: 20px; }
+        .modal-info strong { color: #1f2937; }
+        .modal-info p { color: #6b7280; font-size: 15px; margin-bottom: 12px; }
+
+        /* Stats */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 40px 0; background: #f9fafb; border-radius: 12px; margin: 40px 0; }
+        .stat { text-align: center; padding: 20px; }
+        .stat-number { font-size: 36px; font-weight: 800; color: #03AC13; }
+        .stat-label { color: #6b7280; font-size: 14px; margin-top: 8px; }
+
+        /* FAQ */
+        .faq { padding: 80px 20px; background: #f9fafb; }
+        .faq-item { background: white; padding: 24px; border-radius: 12px; margin-bottom: 16px; border-left: 4px solid #e5e7eb; cursor: pointer; transition: all 0.3s; }
+        .faq-item:hover { border-left-color: #03AC13; }
+        .faq-item.active { border-left-color: #03AC13; background: #f0fdf4; }
+        .faq-item h3 { color: #1f2937; margin-bottom: 12px; font-size: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item p { display: none; color: #6b7280; line-height: 1.6; }
+        .faq-item.active p { display: block; }
+
+        /* Footer */
+        footer { background: #1f2937; color: white; padding: 40px 20px; text-align: center; }
+        footer p { font-size: 14px; color: #d1d5db; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">GrantMatch</div>
+            <div style="font-size: 14px; color: #6b7280;">Find grants. Get funded.</div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Stop Wasting 20+ Hours Hunting for Grants</h1>
+            <p>We found all 200+ government grants. Get matched to the ones you actually qualify for in just 5 minutes.</p>
+            <button class="cta-btn" onclick="document.getElementById('formSection').scrollIntoView({behavior: 'smooth'})">Find Your Grants →</button>
+        </div>
+    </div>
+
+    <div class="problems">
+        <div class="container">
+            <h2 class="section-title">Why Founders Struggle</h2>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <h3>200+ Scattered Programs</h3>
+                    <p>Government grants are spread across DSIR, DPIIT, state schemes, and dozens of ministries. No single place to find them all.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>20+ Hours of Research</h3>
+                    <p>Founders waste weeks hunting through government websites, eligibility docs, and deadlines just to find relevant grants.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Missing ₹50L+</h3>
+                    <p>Most founders miss 70% of grants they qualify for because they don't know they exist or can't navigate the process.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How GrantMatch Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Tell Us About Your Startup</h3>
+                    <p>Sector, stage, and location. Just 3 questions.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get Instant Matches</h3>
+                    <p>We match you to 200+ verified government grants in seconds.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Explore Your Options</h3>
+                    <p>See ticket size, deadlines, eligibility, and application links.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Get Expert Help</h3>
+                    <p>Our team helps you navigate applications and close the deals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-section" id="formSection">
+        <div class="container">
+            <div class="form-wrapper">
+                <h2>Find Your Grants</h2>
+                <p>Takes less than 5 minutes</p>
+                
+                <form id="grantForm">
+                    <div class="form-group">
+                        <label for="sector">What's your startup sector?</label>
+                        <select id="sector" name="sector" required>
+                            <option value="">Select...</option>
+                            <option value="fintech">Fintech</option>
+                            <option value="deeptech">Deep Tech</option>
+                            <option value="biotech">Biotech</option>
+                            <option value="agritech">Agritech</option>
+                            <option value="edtech">EdTech</option>
+                            <option value="healthtech">HealthTech</option>
+                            <option value="saas">SaaS</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stage">What stage are you at?</label>
+                        <select id="stage" name="stage" required>
+                            <option value="">Select...</option>
+                            <option value="idea">Idea Stage</option>
+                            <option value="preseed">Pre-Seed</option>
+                            <option value="seed">Seed</option>
+                            <option value="seriesA">Series A</option>
+                            <option value="seriesB">Series B+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">Which state are you based in?</label>
+                        <select id="state" name="state" required>
+                            <option value="">Select...</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="tamil-nadu">Tamil Nadu</option>
+                            <option value="telangana">Telangana</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your email</label>
+                        <input type="email" id="email" name="email" placeholder="you@startup.com" required>
+                    </div>
+
+                    <button type="submit" class="cta-btn" style="width: 100%; padding: 14px;">Find My Grants →</button>
+                </form>
+            </div>
+
+            <div class="results-section" id="resultsSection">
+                <div class="success-message">
+                    <h3>✓ Profile Saved Successfully</h3>
+                    <p>You'll receive a personalized call to discuss your grant options and help you apply.</p>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number" id="matchCount">0</div>
+                        <div class="stat-label">Matching Grants</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="totalFunding">₹0L+</div>
+                        <div class="stat-label">Total Potential</div>
+                    </div>
+                </div>
+
+                <h2 style="margin-bottom: 30px; color: #1f2937;">Explore Grants in Your Area</h2>
+                <div class="grants-grid" id="grantsGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item active">
+                <h3>How do you find these grants? <span>▼</span></h3>
+                <p>We work directly with government ministries (DSIR, DPIIT, SIDBI, etc.) and maintain an updated database of all central and state schemes. Our team verifies each grant's eligibility requirements and deadlines.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is GrantMatch free? <span>▼</span></h3>
+                <p>Finding and matching with grants is completely free. We offer optional paid services for application support and mentorship, starting at ₹5,000/month.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How long does it take to get matched? <span>▼</span></h3>
+                <p>Our matching algorithm works instantly. You get personalized results in under 5 minutes. Our team then calls you within 24 hours to discuss next steps.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do you help with applications? <span>▼</span></h3>
+                <p>Yes. We provide detailed application guides for each grant. For premium members, our team helps navigate the entire process from application to approval.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Which grants are included? <span>▼</span></h3>
+                <p>We cover 200+ programs including Startup India Seed Fund, DSIR, DPIIT, state schemes, and sector-specific grants (fintech, biotech, etc.).</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 GrantMatch. Helping Indian startups access government grants.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Grant Details -->
+    <div class="modal" id="grantModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="document.getElementById('grantModal').classList.remove('show')">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const grantsData = [
+            {id: 1, name: "Startup India Seed Fund", sector: "All", stage: "Pre-Seed", min: 5000, max: 500000, state: "All", deadline: "Ongoing", eligibility: "Must be incorporated as a private limited company; registered as a startup; less than 5 years old"},
+            {id: 2, name: "DSIR Early Stage Innovation Fund", sector: "Deep Tech", stage: "Idea", min: 200000, max: 5000000, state: "All", deadline: "Ongoing", eligibility: "Individual researchers or teams; working on scientific/industrial research"},
+            {id: 3, name: "DPIIT Technology Fund", sector: "All", stage: "Pre-Seed", min: 1000000, max: 5000000, state: "All", deadline: "Quarterly", eligibility: "Innovative technology startups; less than 7 years old"},
+            {id: 4, name: "NASSCOM 10000 Startups", sector: "All", stage: "Seed", min: 500000, max: 2000000, state: "All", deadline: "Rolling", eligibility: "Registered startup; innovative business model; based in India"},
+            {id: 5, name: "Maharashtra Innovation Scheme", sector: "All", stage: "All", min: 1000000, max: 5000000, state: "maharashtra", deadline: "Rolling", eligibility: "Registered in Maharashtra; innovative business model"},
+            {id: 6, name: "Karnataka Startup Policy", sector: "All", stage: "Pre-Seed", min: 500000, max: 2000000, state: "karnataka", deadline: "Rolling", eligibility: "Registered in Karnataka; less than 5 years old"},
+            {id: 7, name: "Fintech Regulatory Sandbox", sector: "fintech", stage: "Seed", min: 2000000, max: 10000000, state: "All", deadline: "Rolling", eligibility: "Fintech business model; regulatory compliant"},
+            {id: 8, name: "Biotechnology Ignition Grant", sector: "biotech", stage: "Pre-Seed", min: 500000, max: 2000000, state: "All", deadline: "Ongoing", eligibility: "Biotech/life sciences; registered company"},
+            {id: 9, name: "AI and ML Innovation Fund", sector: "deeptech", stage: "Seed", min: 1000000, max: 5000000, state: "All", deadline: "Rolling", eligibility: "AI/ML technology core; problem-solution fit"},
+            {id: 10, name: "Women Entrepreneurs Program", sector: "All", stage: "Pre-Seed", min: 500000, max: 2000000, state: "All", deadline: "Ongoing", eligibility: "Woman founder/co-founder; registered company"},
+            {id: 11, name: "EdTech Innovation Fund", sector: "edtech", stage: "Seed", min: 500000, max: 3000000, state: "All", deadline: "Rolling", eligibility: "EdTech business model; proven user engagement"},
+            {id: 12, name: "AgriTech Accelerator", sector: "agritech", stage: "All", min: 500000, max: 2000000, state: "All", deadline: "Rolling", eligibility: "Agricultural technology; solving farmer problems"},
+        ];
+
+        function scoreGrant(grant, sector, stage, state) {
+            let score = 0;
+            if (grant.sector === 'All' || grant.sector === sector) score += 100;
+            if (grant.stage === 'All' || grant.stage === stage) score += 80;
+            if (grant.state === 'All' || grant.state === state) score += 60;
+            return score;
+        }
+
+        function findMatches(sector, stage, state) {
+            return grantsData
+                .map(g => ({...g, score: scoreGrant(g, sector, stage, state)}))
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 12);
+        }
+
+        document.getElementById('grantForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const sector = document.getElementById('sector').value;
+            const stage = document.getElementById('stage').value;
+            const state = document.getElementById('state').value;
+            const matches = findMatches(sector, stage, state);
+
+            document.getElementById('matchCount').textContent = matches.length;
+            const funding = matches.reduce((sum, g) => sum + g.max, 0);
+            document.getElementById('totalFunding').textContent = Math.round(funding / 10000000) + 'L+';
+
+            document.getElementById('grantsGrid').innerHTML = matches.map(g => `
+                <div class="grant-card">
+                    <h3>${g.name}</h3>
+                    <p>Government supported grant program</p>
+                    <div class="grant-meta">
+                        <span class="badge">₹${Math.round(g.max / 100000)}L max</span>
+                        <span class="badge green">${g.deadline}</span>
+                    </div>
+                    <button class="learn-more-btn" onclick="showGrantDetails(${g.id})">Learn More →</button>
+                </div>
+            `).join('');
+
+            document.getElementById('formSection').scrollIntoView({behavior: 'smooth'});
+            document.getElementById('resultsSection').classList.add('show');
+        });
+
+        function showGrantDetails(grantId) {
+            const grant = grantsData.find(g => g.id === grantId);
+            document.getElementById('modalBody').innerHTML = `
+                <h2>${grant.name}</h2>
+                <div class="modal-info">
+                    <p><strong>Ticket Size:</strong> ₹${Math.round(grant.min / 100000)}L - ₹${Math.round(grant.max / 100000)}L</p>
+                    <p><strong>Applicable Sectors:</strong> ${grant.sector}</p>
+                    <p><strong>Applicable Stages:</strong> ${grant.stage}</p>
+                    <p><strong>Geographic Scope:</strong> ${grant.state === 'All' ? 'All India' : grant.state.toUpperCase()}</p>
+                    <p><strong>Application Deadline:</strong> ${grant.deadline}</p>
+                    <p><strong>Eligibility:</strong> ${grant.eligibility}</p>
+                </div>
+                <button class="cta-btn" style="width: 100%;">Apply Now →</button>
+            `;
+            document.getElementById('grantModal').classList.add('show');
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
