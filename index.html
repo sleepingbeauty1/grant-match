@@ -432,7 +432,7 @@
 
                 <div class="modal-section">
                     <strong>Application Link</strong>
-                    <p><a href="${grant.link}" target="_blank" style="color: #03AC13; text-decoration: underline; font-weight: 600; cursor: pointer;">${grant.link}</a></p>
+                    <p>${grant.link_status === 'working' ? `<a href="${grant.link}" target="_blank" style="color: #03AC13; text-decoration: underline; font-weight: 600; cursor: pointer;">${grant.link}</a>` : '<em style="color: #9ca3af;">Link pending verification</em>'}</p>
                 </div>
             `;
             document.getElementById('grantModal').classList.add('show');
