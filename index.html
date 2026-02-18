@@ -371,6 +371,7 @@
                         <span class="badge">₹${Math.round(g.min / 100000)}L - ₹${Math.round(g.max / 100000)}L</span>
                         <span class="badge green">${g.deadline}</span>
                     </div>
+                    <div style="margin-top: 16px; color: #03AC13; font-weight: 600;">Learn More →</div>
                 </div>
             `).join('');
 
@@ -411,9 +412,10 @@
                     <p>${grant.deadline}</p>
                 </div>
 
-                <!-- Coming soon: direct application links
-                <a href="${grant.link}" target="_blank" class="modal-link">View Official Website →</a>
-                -->
+                <div class="modal-section">
+                    <strong>Application Link</strong>
+                    <p><a href="${grant.link}" target="_blank" style="color: #03AC13; text-decoration: none; font-weight: 600;">${grant.link}</a></p>
+                </div>
             `;
             document.getElementById('grantModal').classList.add('show');
         }
