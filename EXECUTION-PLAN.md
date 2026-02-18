@@ -10,9 +10,14 @@
 
 ### What We're Testing
 - Does the problem actually exist? (clicks)
-- Will founders pay? (questionnaire intent signals)
-- Which founders care most? (sector/stage/location distribution)
-- Which grants matter most? (click patterns)
+- **IS THERE REAL DEMAND?** (who asks for help applying after seeing results)
+- Which founder segments have highest intent? (sector/stage/location)
+- Which grants get marked as interested? (click patterns)
+
+### The Real Signal (Om's Insight)
+- If founders DON'T ask for help applying → demand is fake
+- If founders DO ask → we have a real business
+- This is the make-or-break metric
 
 ### The Ad Campaign
 
@@ -57,59 +62,49 @@
 
 ---
 
-## Phase 2: Database Build (Based on Ad Learnings - Feb 24-28)
+## Phase 2: Add "Help Applying" Layer (Based on Ad Data - Feb 24-28)
 
-### After ads run, we know:
-- Which sectors are interested
-- Which stages are interested
-- Which grants got clicked most
-- Geographic distribution
+### What We Build (If demand signal is strong)
+- Application guides (step-by-step for top 5 grants)
+- Document templates (required forms + checklist)
+- Progress tracking (which stage of application they're at)
+- Direct support (Slack/WhatsApp for questions)
 
-### Then we build the database prioritizing:
-1. Top 5 grants that got clicked (get these 100% accurate)
-2. All grants for top sectors (40-50 programs)
-3. All grants for top stage (20-30 programs)
-4. All grants for top states (50+ programs)
+### This is the Revenue Driver
+- Free tier: Just matching
+- Pro tier: ₹5000/month → application help + deadline tracking + support
 
-### Database Fields (Per Grant)
-- Name
-- Sector applicability
-- Stage requirements
-- Ticket size
-- Location requirements
-- Eligibility criteria (detailed)
-- Application deadline
-- Application process
-- Contact info
-- Link
+### Why This Works
+- Founders see grants they qualify for (free)
+- Some apply themselves (good, low-touch)
+- Some ask for help (high-intent, willing to pay)
+- We help them apply (build relationship, prove value)
+- They upgrade to pro or pay per-application
 
-### Why This Order
-- Start with what we know founders want (from ads)
-- Get those right first (accuracy > comprehensiveness)
-- Then expand to full database
-- Avoid building for hypothetical founders
+### The Messaging Shift
+- OLD: "Find grants easily"
+- NEW: "You qualify for ₹X lakh. We'll help you apply."
 
 ---
 
-## Phase 3: MVP Build (Feb 28 - Mar 3)
+## Phase 3: Launch & Iterate (Mar 3+)
 
-### MVP Features (Based on Ad Data)
-- Questionnaire (same as ad landing page)
-- Matching engine (rule-based)
-- Results dashboard
-- "Export as PDF" for applications
-- Email reminders for deadlines
+### If Ad Data Shows Strong Demand
+- Launch pro tier at ₹5000/month (help applying feature)
+- Email all free users: "Need help applying? Upgrade to pro"
+- Start with founders who asked for help → prime conversion targets
+- Build more application guides based on which grants get asked about most
 
-### NOT in MVP
-- ML matching (too early)
-- Video tutorials (too early)
-- Mentor intros (too early)
-- Application tracking (too early)
+### Monetization Strategy (Om's Key Insight)
+- Discovery alone = "nice to have" = low conversion
+- Help applying = real demand = customers will pay
+- Position as: "Apply to ₹X grants in 2 weeks with our support"
 
-### Why This Scope
-- We only know what founders asked for from ads
-- Build exactly that, nothing more
-- Prove it works with paying customers first
+### Revenue Timeline
+- Month 1: 100 free users (from ads)
+- Month 2: 10-20 paying customers from free tier
+- Month 3: 30-50 paying customers (organic + word of mouth)
+- Target: ₹5-10L MRR by end of Q1
 
 ---
 
@@ -146,19 +141,19 @@
 
 ---
 
-## Constraints & Solutions
+## Key Decision (Om's Insight)
 
-**Constraint: Can't call founders**
-- Solution: Ads reach them directly, email for follow-up
+**Discovery alone won't drive revenue.**
 
-**Constraint: Don't know what they want**
-- Solution: Ad data + questionnaire tells us exactly
+The real business is:
+1. Show founders which grants they qualify for (free)
+2. Help them actually apply (paid)
+3. Track their progress (paid)
+4. Answer questions (paid)
 
-**Constraint: Accuracy matters**
-- Solution: Start with top grants, get those perfect first
+Messaging must be: **"You qualify for ₹X. We'll help you apply and close the deal."**
 
-**Constraint: Competition?**
-- Solution: Moat is accuracy + local expertise. Most won't do tedious work.
+Not: "Find all government grants."
 
 ---
 
