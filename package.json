@@ -1,0 +1,27 @@
+{
+  "name": "grant-match",
+  "version": "1.0.0",
+  "description": "Find government grants in 5 minutes. Indian startup grants discovery platform.",
+  "main": "api-server.js",
+  "scripts": {
+    "start": "node api-server.js",
+    "dev": "NODE_ENV=development node api-server.js",
+    "test": "node matching-engine.js"
+  },
+  "keywords": [
+    "grants",
+    "startup",
+    "india",
+    "funding",
+    "government"
+  ],
+  "author": "sleepingbeauty + codercat",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
