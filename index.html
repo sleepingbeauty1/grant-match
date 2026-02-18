@@ -357,6 +357,13 @@
             const state = document.getElementById('state').value;
             const email = document.getElementById('email').value;
 
+            // Save to server
+            fetch('/api/match-grants', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name, gender, cofounders, sector, stage, state, email})
+            });
+
             const matches = findMatches(sector, stage, state, gender);
 
             document.getElementById('matchCount').textContent = matches.length;
